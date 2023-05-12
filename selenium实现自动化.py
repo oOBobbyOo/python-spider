@@ -9,8 +9,7 @@ selenium 使用教程：
 
   - 1.下载后解压, 解压后的webdriver放到bin目录
   - 2.打开命令终端, cd /usr/local/bin (因为一般bin目录是隐藏的, 可以通过终端打开 cmd + shift + g)
-  - 3. 如果在运行的过程中提示: 无法打开“chromedriver”, 因为无法验证开发者, 是因为mac 不信任我们下载下来的 webdriver 文件，打开安全隐私模式，添加信任就可以了
-  - 进入webdriver存放目录, 我这里是/usr/local/bin, 在终端输入命令: xattr -d com.apple.quarantine chromedriver
+  - 3.如果在运行的过程中提示: 无法打开“chromedriver”, 因为无法验证开发者, 是因为mac 不信任我们下载下来的 webdriver 文件, 打开安全隐私模式, 添加信任就可以了, 进入webdriver存放目录, 我这里是/usr/local/bin, 在终端输入命令: xattr -d com.apple.quarantine chromedriver
 """
 
 from selenium import webdriver
@@ -37,6 +36,10 @@ options.add_experimental_option("detach", True)
 # 添加实验性质的设置参数 实现监测规避
 options.add_experimental_option("excludeSwitches", ["enable-automation"])
 
+# user-agent
+options.add_argument(
+    'User-Agent=Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/113.0.0.0 Safari/537.36')
+
 # 无头模式
 # options.add_argument("--headless")
 
@@ -54,6 +57,18 @@ options.add_experimental_option("excludeSwitches", ["enable-automation"])
 
 # 启动浏览器最大化
 # options.add_argument('--start-maximized')
+
+# 指定浏览器分辨率
+# options.add_argument('window-size=1920x1080')
+
+# 禁用浏览器正在被自动化程序控制的提示
+# options.add_argument('--disable-infobars')
+
+# 不加载图片, 提升速度
+# options.add_argument('blink-settings=imagesEnabled=false')
+
+# 隐身模式（无痕模式）
+# options.add_argument('--incognito')
 
 driver = webdriver.Chrome(
     service=service, options=options)
