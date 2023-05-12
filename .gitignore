@@ -6,3 +6,4 @@ meinvpic
 __pycache__
 *.csv
 .DS_Store
+*/.DS_Store
